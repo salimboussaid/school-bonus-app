@@ -20,12 +20,28 @@ const mockGifts: Gift[] = [
     id: 1,
     name: 'Фирменая худи с логотипом вуза',
     price: 100,
-    stock: 0,
+    stock: 5,
     images: ['/gifts/a.jpg', '/gifts/aa.jpg', '/gifts/aaa.jpg', '/gifts/a.jpg'],
     category: 'Фирменая худи с логотипом вуза',
   },
   {
     id: 2,
+    name: 'Фирменая худи с логотипом вуза',
+    price: 100,
+    stock: 3,
+    images: ['/gifts/a.jpg', '/gifts/aa.jpg', '/gifts/aaa.jpg', '/gifts/a.jpg'],
+    category: 'Фирменая худи с логотипом вуза',
+  },
+  {
+    id: 3,
+    name: 'Фирменая худи с логотипом вуза',
+    price: 100,
+    stock: 8,
+    images: ['/gifts/a.jpg', '/gifts/aa.jpg', '/gifts/aaa.jpg', '/gifts/a.jpg'],
+    category: 'Фирменая худи с логотипом вуза',
+  },
+  {
+    id: 4,
     name: 'Ручка',
     price: 25,
     stock: 15,
@@ -33,7 +49,7 @@ const mockGifts: Gift[] = [
     category: 'Ручка',
   },
   {
-    id: 3,
+    id: 5,
     name: 'Футболка',
     price: 50,
     stock: 20,
@@ -198,79 +214,77 @@ export default function GiftsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f4f9fd] flex">
+    <div className="flex h-screen w-full bg-[#f4f9fd]">
       {/* Sidebar */}
-      <aside className="w-64 bg-white shadow-sm fixed h-full">
-        <nav className="py-8">
-          <div className="space-y-2">
-            <button
-              onClick={() => router.push('/profile')}
-              className="w-full flex items-center gap-3 px-6 py-3 text-left text-gray-600 hover:bg-gray-50"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                <circle cx="12" cy="7" r="4" />
-              </svg>
-              <span>Профиль</span>
-            </button>
+      <aside className="w-64 bg-white border-r flex flex-col">
+        <nav className="flex-1 px-4 pt-8 space-y-2">
+          <button
+            onClick={() => router.push('/profile')}
+            className="w-full flex items-center gap-3 px-4 py-3 text-left text-gray-700 hover:bg-gray-50 rounded-xl transition-colors"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+            <span>Профиль</span>
+          </button>
 
-            <button
-              onClick={() => router.push('/users')}
-              className="w-full flex items-center gap-3 px-6 py-3 text-left text-gray-600 hover:bg-gray-50"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                <circle cx="9" cy="7" r="4" />
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
-              </svg>
-              <span>Пользователи</span>
-            </button>
+          <button
+            onClick={() => router.push('/users')}
+            className="w-full flex items-center gap-3 px-4 py-3 text-left text-gray-700 hover:bg-gray-50 rounded-xl transition-colors"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+            <span>Пользователи</span>
+          </button>
 
-            <button
-              onClick={() => router.push('/groups')}
-              className="w-full flex items-center gap-3 px-6 py-3 text-left text-gray-600 hover:bg-gray-50"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="12" cy="12" r="3" />
-                <path d="M12 1v6m0 6v6M5.64 5.64l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M5.64 18.36l4.24-4.24m4.24-4.24l4.24-4.24" />
-              </svg>
-              <span>Группы</span>
-            </button>
+          <button
+            onClick={() => router.push('/groups')}
+            className="w-full flex items-center gap-3 px-4 py-3 text-left text-gray-700 hover:bg-gray-50 rounded-xl transition-colors"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="12" cy="12" r="3" />
+              <path d="M12 1v6m0 6v6M5.64 5.64l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M5.64 18.36l4.24-4.24m4.24-4.24l4.24-4.24" />
+            </svg>
+            <span>Группы</span>
+          </button>
 
-            <button className="w-full flex items-center gap-3 px-6 py-3 text-left bg-gray-100 border-l-4 border-indigo-600">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-              </svg>
-              <span className="font-medium">Подарки</span>
-            </button>
+          <button className="w-full flex items-center gap-3 px-4 py-3 text-left bg-[#132440]/10 text-[#132440] font-medium rounded-xl border-l-4 border-[#132440]">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+            </svg>
+            <span>Подарки</span>
+          </button>
 
-            <button
-              onClick={() => router.push('/orders')}
-              className="w-full flex items-center gap-3 px-6 py-3 text-left text-gray-600 hover:bg-gray-50"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M9 2v2m6-2v2M4 6h16M5 10h14v10H5V10z" />
-              </svg>
-              <span>Заказы</span>
-            </button>
+          <button
+            onClick={() => router.push('/orders')}
+            className="w-full flex items-center gap-3 px-4 py-3 text-left text-gray-700 hover:bg-gray-50 rounded-xl transition-colors"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M9 2v2m6-2v2M4 6h16M5 10h14v10H5V10z" />
+            </svg>
+            <span>Заказы</span>
+          </button>
 
-            <button
-              onClick={() => router.push('/history')}
-              className="w-full flex items-center gap-3 px-6 py-3 text-left text-gray-600 hover:bg-gray-50"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
-              </svg>
-              <span>История</span>
-            </button>
-          </div>
+          <button
+            onClick={() => router.push('/history')}
+            className="w-full flex items-center gap-3 px-4 py-3 text-left text-gray-700 hover:bg-gray-50 rounded-xl transition-colors"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
+            </svg>
+            <span>История</span>
+          </button>
         </nav>
 
-        <div className="absolute bottom-8 left-6">
+        <div className="p-6 mt-auto border-t">
           <button
             onClick={() => router.push('/auth')}
-            className="flex items-center gap-2 text-gray-600 hover:text-gray-800"
+            className="w-full flex items-center gap-3 px-4 py-3 text-left text-gray-700 hover:bg-gray-50 rounded-xl transition-colors"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" />
@@ -281,21 +295,36 @@ export default function GiftsPage() {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 ml-64 flex">
-        {/* Categories List */}
-        <div className="w-80 bg-white border-r">
-          <div className="p-6">
-            <h1 className="text-2xl font-bold mb-6">Подарки</h1>
+      <main className="flex-1 overflow-auto">
+        {/* Top Header */}
+        <div className="bg-white border-b px-10 py-6">
+          <div className="flex items-center justify-between">
+            <h1 className="text-3xl font-bold text-gray-800">Подарки</h1>
+            <button
+              onClick={openCreateModal}
+              className="bg-[#132440] text-white px-6 py-3 rounded-xl hover:bg-[#0d1a2e] transition-colors flex items-center gap-2 shadow-sm"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M12 5v14M5 12h14" />
+              </svg>
+              <span className="font-medium">Создать подарок</span>
+            </button>
+          </div>
+        </div>
 
-            <div className="space-y-2">
+        {/* Content Area */}
+        <div className="p-10">
+          {/* Categories Filter */}
+          <div className="mb-8">
+            <div className="flex gap-2 flex-wrap">
               {categories.map((category) => (
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`w-full text-left px-4 py-3 rounded-lg transition-colors ${
+                  className={`px-5 py-2.5 rounded-xl font-medium transition-all ${
                     selectedCategory === category
-                      ? 'bg-indigo-50 border-l-4 border-indigo-600'
-                      : 'hover:bg-gray-50'
+                      ? 'bg-[#132440] text-white shadow-sm'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >
                   {category}
@@ -303,21 +332,8 @@ export default function GiftsPage() {
               ))}
             </div>
           </div>
-        </div>
 
-        {/* Gifts Grid */}
-        <div className="flex-1 p-8 overflow-y-auto">
-          <div className="flex justify-between items-center mb-8">
-            <h2 className="text-2xl font-bold">Подарки</h2>
-            <button
-              onClick={openCreateModal}
-              className="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 px-4 rounded-lg flex items-center gap-2"
-            >
-              <span className="text-xl">+</span>
-              Создать подарок
-            </button>
-          </div>
-
+          {/* Gifts Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredGifts.map((gift) => (
               <div key={gift.id} className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow relative">

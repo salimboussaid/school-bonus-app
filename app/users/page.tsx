@@ -323,34 +323,33 @@ export default function UsersPage() {
     })
 
   return (
-    <div className="min-h-screen bg-[#f4f9fd] flex">
+    <div className="flex h-screen w-full bg-[#f4f9fd]">
       {/* Sidebar */}
-      <aside className="w-64 bg-white shadow-sm fixed h-full">
-        <nav className="py-8">
-          <div className="space-y-2">
-            <button
-              onClick={() => router.push('/profile')}
-              className="w-full flex items-center gap-3 px-6 py-3 text-left text-gray-600 hover:bg-gray-50"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                <circle cx="12" cy="7" r="4" />
-              </svg>
-              <span>Профиль</span>
-            </button>
+      <aside className="w-64 bg-white border-r flex flex-col">
+        <nav className="flex-1 px-4 pt-8 space-y-2">
+          <button
+            onClick={() => router.push('/profile')}
+            className="w-full flex items-center gap-3 px-4 py-3 text-left text-gray-700 hover:bg-gray-50 rounded-xl transition-colors"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+            <span>Профиль</span>
+          </button>
 
-            <button className="w-full flex items-center gap-3 px-6 py-3 text-left bg-gray-100 border-l-4 border-indigo-600">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                <circle cx="9" cy="7" r="4" />
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
-              </svg>
-              <span className="font-medium">Пользователи</span>
-            </button>
+          <button className="w-full flex items-center gap-3 px-4 py-3 text-left bg-[#132440]/10 text-[#132440] font-medium rounded-xl border-l-4 border-[#132440]">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+            <span>Пользователи</span>
+          </button>
 
             <button
               onClick={() => router.push('/groups')}
-              className="w-full flex items-center gap-3 px-6 py-3 text-left text-gray-600 hover:bg-gray-50"
+              className="w-full flex items-center gap-3 px-4 py-3 text-left text-gray-700 hover:bg-gray-50 rounded-xl transition-colors"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="12" cy="12" r="3" />
@@ -361,7 +360,7 @@ export default function UsersPage() {
 
             <button
               onClick={() => router.push('/gifts')}
-              className="w-full flex items-center gap-3 px-6 py-3 text-left text-gray-600 hover:bg-gray-50"
+              className="w-full flex items-center gap-3 px-4 py-3 text-left text-gray-700 hover:bg-gray-50 rounded-xl transition-colors"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
@@ -369,16 +368,9 @@ export default function UsersPage() {
               <span>Подарки</span>
             </button>
 
-            <button className="w-full flex items-center gap-3 px-6 py-3 text-left text-gray-600 hover:bg-gray-50">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M9 2v2m6-2v2M4 6h16M5 10h14v10H5V10z" />
-              </svg>
-              <span>Заказы</span>
-            </button>
-
             <button
               onClick={() => router.push('/orders')}
-              className="w-full flex items-center gap-3 px-6 py-3 text-left text-gray-600 hover:bg-gray-50"
+              className="w-full flex items-center gap-3 px-4 py-3 text-left text-gray-700 hover:bg-gray-50 rounded-xl transition-colors"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M9 2v2m6-2v2M4 6h16M5 10h14v10H5V10z" />
@@ -388,7 +380,7 @@ export default function UsersPage() {
 
             <button
               onClick={() => router.push('/history')}
-              className="w-full flex items-center gap-3 px-6 py-3 text-left text-gray-600 hover:bg-gray-50"
+              className="w-full flex items-center gap-3 px-4 py-3 text-left text-gray-700 hover:bg-gray-50 rounded-xl transition-colors"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M12 2L2 7l10 5 10-5-10-5z" />
@@ -396,13 +388,12 @@ export default function UsersPage() {
               </svg>
               <span>История</span>
             </button>
-          </div>
         </nav>
 
-        <div className="absolute bottom-8 left-6">
+        <div className="p-6 mt-auto border-t">
           <button
             onClick={() => router.push('/auth')}
-            className="flex items-center gap-2 text-gray-600 hover:text-gray-800"
+            className="w-full flex items-center gap-3 px-4 py-3 text-left text-gray-700 hover:bg-gray-50 rounded-xl transition-colors"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" />
@@ -413,10 +404,11 @@ export default function UsersPage() {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 ml-64 p-8">
-        <div className="max-w-7xl">
-          <div className="flex justify-between items-center mb-8">
-            <h1 className="text-3xl font-bold">База пользователей</h1>
+      <main className="flex-1 overflow-auto">
+        {/* Top Header */}
+        <div className="bg-white border-b px-10 py-6">
+          <div className="flex items-center justify-between">
+            <h1 className="text-3xl font-bold text-gray-800">База пользователей</h1>
             <button
               onClick={() => {
                 setNewUser({
@@ -432,150 +424,142 @@ export default function UsersPage() {
                 setErrors({})
                 setShowCreateModal(true)
               }}
-              className="bg-indigo-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-indigo-700 flex items-center gap-2"
+              className="bg-[#132440] text-white px-6 py-3 rounded-xl hover:bg-[#0d1a2e] transition-colors flex items-center gap-2 shadow-sm"
             >
-              <span>+ Создать пользователя</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M12 5v14M5 12h14" />
+              </svg>
+              <span className="font-medium">Создать пользователя</span>
             </button>
           </div>
+        </div>
 
-          {/* Search and Tabs */}
-          <div className="flex items-center justify-center gap-4 mb-6">
-            <div className="relative w-64">
-              <svg
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <circle cx="11" cy="11" r="8" />
-                <path d="m21 21-4.35-4.35" />
-              </svg>
-              <input
-                type="text"
-                placeholder="Поиск"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              />
+        {/* Content Area */}
+        <div className="p-10">
+          <div className="max-w-7xl">
+            {/* Search and Tabs */}
+            <div className="flex items-center justify-center gap-4 mb-8">
+              <div className="relative w-80">
+                <svg
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <circle cx="11" cy="11" r="8" />
+                  <path d="m21 21-4.35-4.35" />
+                </svg>
+                <input
+                  type="text"
+                  placeholder="Поиск"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#132440]/50 focus:border-[#132440]"
+                />
+              </div>
+
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setActiveTab('students')}
+                  className={`px-6 py-2.5 rounded-xl font-medium transition-all ${
+                    activeTab === 'students'
+                      ? 'bg-[#132440] text-white shadow-sm'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  Ученики
+                </button>
+                <button
+                  onClick={() => setActiveTab('teachers')}
+                  className={`px-6 py-2.5 rounded-xl font-medium transition-all ${
+                    activeTab === 'teachers'
+                      ? 'bg-[#132440] text-white shadow-sm'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  Преподаватели
+                </button>
+              </div>
             </div>
 
-            <div className="flex gap-2">
-              <button
-                onClick={() => setActiveTab('students')}
-                className={`px-6 py-2 rounded-full font-medium transition-colors ${
-                  activeTab === 'students'
-                    ? 'bg-indigo-600 text-white'
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                }`}
-              >
-                Ученики
-              </button>
-              <button
-                onClick={() => setActiveTab('teachers')}
-                className={`px-6 py-2 rounded-full font-medium transition-colors ${
-                  activeTab === 'teachers'
-                    ? 'bg-indigo-600 text-white'
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                }`}
-              >
-                Преподаватели
-              </button>
-            </div>
-          </div>
-
-          {/* Users List */}
-          <div className="space-y-4">
-            {filteredUsers.map((user) => (
-              <div
-                key={user.id}
-                className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow"
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex-1 grid grid-cols-4 gap-4">
-                    <div>
-                      <div className="text-xs text-gray-500 mb-1">ФИО</div>
-                      <div className="font-medium">{user.fullName}</div>
-                    </div>
-                    <div>
-                      <div className="text-xs text-gray-500 mb-1">Логин</div>
-                      <div>{user.login}</div>
-                    </div>
-                    <div>
-                      <div className="text-xs text-gray-500 mb-1">Дата рождения</div>
-                      <div>{user.birthDate}</div>
-                    </div>
-                    {activeTab === 'students' && (
-                      <div>
-                        <div className="text-xs text-gray-500 mb-1">Кол-во алгокоинов</div>
-                        <div>{user.algocoins}</div>
+            {/* Users List */}
+            <div className="space-y-3">
+              {filteredUsers.map((user) => (
+                <div
+                  key={user.id}
+                  className="group relative bg-gradient-to-br from-white to-gray-50/50 rounded-2xl p-6 border border-gray-200 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 ease-out"
+                >
+                  <div className="flex items-center justify-between gap-6">
+                    {/* Grid Layout for User Data */}
+                    <div className="flex-1 grid grid-cols-4 gap-6">
+                      <div className="flex flex-col">
+                        <div className="text-xs font-medium text-gray-500 mb-1.5">ФИО</div>
+                        <div className="h-px bg-gradient-to-r from-gray-200 to-transparent mb-2"></div>
+                        <div className="text-sm font-bold text-gray-800">{user.fullName}</div>
                       </div>
-                    )}
-                  </div>
-
-                  <div className="relative ml-4">
-                    <button
-                      onClick={() => setShowUserMenu(showUserMenu === user.id ? null : user.id)}
-                      className="p-2 hover:bg-gray-100 rounded-lg"
-                    >
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <circle cx="12" cy="5" r="2" />
-                        <circle cx="12" cy="12" r="2" />
-                        <circle cx="12" cy="19" r="2" />
-                      </svg>
-                    </button>
-
-                    {showUserMenu === user.id && (
-                      <div className="absolute right-0 top-12 bg-white border rounded-lg shadow-lg py-2 z-10 min-w-[180px]">
-                        <button
-                          onClick={() => openEditModal(user)}
-                          className="w-full px-4 py-2 text-left hover:bg-gray-100 flex items-center gap-2"
-                        >
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
-                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
-                          </svg>
-                          Редактировать
-                        </button>
-                        <button
-                          onClick={() => openDeleteModal(user)}
-                          className="w-full px-4 py-2 text-left hover:bg-gray-100 flex items-center gap-2 text-red-600"
-                        >
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 4 0 0 1 2 2v2" />
-                          </svg>
-                          Удалить
-                        </button>
+                      
+                      <div className="flex flex-col">
+                        <div className="text-xs font-medium text-gray-500 mb-1.5">Логин</div>
+                        <div className="h-px bg-gradient-to-r from-gray-200 to-transparent mb-2"></div>
+                        <div className="text-sm font-semibold text-gray-700">{user.login}</div>
                       </div>
-                    )}
+                      
+                      <div className="flex flex-col">
+                        <div className="text-xs font-medium text-gray-500 mb-1.5">Дата рождения</div>
+                        <div className="h-px bg-gradient-to-r from-gray-200 to-transparent mb-2"></div>
+                        <div className="text-sm font-semibold text-gray-700">{user.birthDate}</div>
+                      </div>
+                      
+                      <div className="flex flex-col">
+                        <div className="text-xs font-medium text-gray-500 mb-1.5">Кол-во алгокоинов</div>
+                        <div className="h-px bg-gradient-to-r from-gray-200 to-transparent mb-2"></div>
+                        <div className="text-sm font-bold text-[#132440]">{user.algocoins}</div>
+                      </div>
+                    </div>
+
+                    {/* Actions Menu */}
+                    <div className="relative">
+                      <button
+                        onClick={() => setShowUserMenu(showUserMenu === user.id ? null : user.id)}
+                        className="p-2.5 rounded-full bg-gray-100/80 hover:bg-[#132440]/10 text-gray-600 hover:text-[#132440] transition-all duration-200 group-hover:shadow-sm"
+                      >
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <circle cx="12" cy="12" r="1" fill="currentColor" />
+                          <circle cx="12" cy="5" r="1" fill="currentColor" />
+                          <circle cx="12" cy="19" r="1" fill="currentColor" />
+                        </svg>
+                      </button>
+
+                      {showUserMenu === user.id && (
+                        <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-xl shadow-xl border border-gray-200 py-2 z-10">
+                          <button
+                            onClick={() => openEditModal(user)}
+                            className="w-full text-left px-4 py-2.5 hover:bg-gray-50 text-gray-700 text-sm transition-colors flex items-center gap-2"
+                          >
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                            </svg>
+                            Редактировать
+                          </button>
+                          <button
+                            onClick={() => openDeleteModal(user)}
+                            className="w-full text-left px-4 py-2.5 hover:bg-red-50 text-red-600 text-sm transition-colors flex items-center gap-2"
+                          >
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                              <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                            </svg>
+                            Удалить
+                          </button>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-
-            {filteredUsers.length === 0 && (
-              <div className="text-center py-12 text-gray-400">
-                Нет пользователей
-              </div>
-            )}
-          </div>
-
-          {/* Pagination */}
-          <div className="flex justify-end items-center gap-4 mt-6 text-sm text-gray-600">
-            <span>1-5 из 28</span>
-            <div className="flex gap-2">
-              <button className="p-1 hover:bg-gray-100 rounded">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M15 18l-6-6 6-6" />
-                </svg>
-              </button>
-              <button className="p-1 hover:bg-gray-100 rounded">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M9 18l6-6-6-6" />
-                </svg>
-              </button>
+              ))}
             </div>
           </div>
         </div>

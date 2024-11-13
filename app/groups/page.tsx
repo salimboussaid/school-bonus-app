@@ -40,23 +40,23 @@ const mockStudents: Student[] = [
   { id: 8, fullName: 'Морозов Кирилл Алексеевич', login: 'morozov' },
   { id: 9, fullName: 'Волков Александр Денисович', login: 'volkov' },
   { id: 10, fullName: 'Смирнова Анастасия Максимовна', login: 'smirnova' },
-  { id: 11, fullName: 'Зайцев Денис Олегович', login: 'zaitsev' },
-  { id: 12, fullName: 'Лебедева Виктория Александровна', login: 'lebedeva' },
-  { id: 13, fullName: 'Макаров Тимофей Евгеньевич', login: 'makarov' },
-  { id: 14, fullName: 'Орлов Максим Викторович', login: 'orlov' },
-  { id: 15, fullName: 'Попова София Андреевна', login: 'popova' },
-  { id: 16, fullName: 'Титов Арсений Станиславович', login: 'titov' },
 ]
 
 const initialGroups: Group[] = [
   {
     id: 1,
-    name: 'Группа 1',
+    name: 'Вечерняя группа',
     teacher: mockTeachers[0],
     participants: mockStudents.slice(0, 15),
   },
   {
     id: 2,
+    name: 'Группа 1',
+    teacher: mockTeachers[0],
+    participants: mockStudents.slice(0, 15),
+  },
+  {
+    id: 3,
     name: 'Группа утро суббота',
     teacher: mockTeachers[0],
     participants: mockStudents.slice(0, 6),
@@ -228,86 +228,77 @@ export default function GroupsPage() {
     : []
 
   return (
-    <div className="min-h-screen bg-[#f4f9fd] flex">
+    <div className="flex h-screen w-full bg-[#f4f9fd]">
       {/* Sidebar */}
-      <aside className="w-64 bg-white shadow-sm fixed h-full">
-        <nav className="py-8">
-          <div className="space-y-2">
-            <button
-              onClick={() => router.push('/profile')}
-              className="w-full flex items-center gap-3 px-6 py-3 text-left text-gray-600 hover:bg-gray-50"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                <circle cx="12" cy="7" r="4" />
-              </svg>
-              <span>Профиль</span>
-            </button>
+      <aside className="w-64 bg-white border-r flex flex-col">
+        <nav className="flex-1 px-4 pt-8 space-y-2">
+          <button
+            onClick={() => router.push('/profile')}
+            className="w-full flex items-center gap-3 px-4 py-3 text-left text-gray-700 hover:bg-gray-50 rounded-xl transition-colors"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+            <span>Профиль</span>
+          </button>
 
-            <button
-              onClick={() => router.push('/users')}
-              className="w-full flex items-center gap-3 px-6 py-3 text-left text-gray-600 hover:bg-gray-50"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                <circle cx="9" cy="7" r="4" />
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
-              </svg>
-              <span>Пользователи</span>
-            </button>
+          <button
+            onClick={() => router.push('/users')}
+            className="w-full flex items-center gap-3 px-4 py-3 text-left text-gray-700 hover:bg-gray-50 rounded-xl transition-colors"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+            <span>Пользователи</span>
+          </button>
 
-            <button className="w-full flex items-center gap-3 px-6 py-3 text-left bg-gray-100 border-l-4 border-indigo-600">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="12" cy="12" r="3" />
-                <path d="M12 1v6m0 6v6M5.64 5.64l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M5.64 18.36l4.24-4.24m4.24-4.24l4.24-4.24" />
-              </svg>
-              <span className="font-medium">Группы</span>
-            </button>
+          <button className="w-full flex items-center gap-3 px-4 py-3 text-left bg-[#132440]/10 text-[#132440] font-medium rounded-xl border-l-4 border-[#132440]">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="12" cy="12" r="3" />
+              <path d="M12 1v6m0 6v6M5.64 5.64l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M5.64 18.36l4.24-4.24m4.24-4.24l4.24-4.24" />
+            </svg>
+            <span>Группы</span>
+          </button>
 
-            <button
-              onClick={() => router.push('/gifts')}
-              className="w-full flex items-center gap-3 px-6 py-3 text-left text-gray-600 hover:bg-gray-50"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-              </svg>
-              <span>Подарки</span>
-            </button>
+          <button
+            onClick={() => router.push('/gifts')}
+            className="w-full flex items-center gap-3 px-4 py-3 text-left text-gray-700 hover:bg-gray-50 rounded-xl transition-colors"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+            </svg>
+            <span>Подарки</span>
+          </button>
 
-            <button className="w-full flex items-center gap-3 px-6 py-3 text-left text-gray-600 hover:bg-gray-50">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M9 2v2m6-2v2M4 6h16M5 10h14v10H5V10z" />
-              </svg>
-              <span>Заказы</span>
-            </button>
+          <button
+            onClick={() => router.push('/orders')}
+            className="w-full flex items-center gap-3 px-4 py-3 text-left text-gray-700 hover:bg-gray-50 rounded-xl transition-colors"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M9 2v2m6-2v2M4 6h16M5 10h14v10H5V10z" />
+            </svg>
+            <span>Заказы</span>
+          </button>
 
-            <button
-              onClick={() => router.push('/orders')}
-              className="w-full flex items-center gap-3 px-6 py-3 text-left text-gray-600 hover:bg-gray-50"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M9 2v2m6-2v2M4 6h16M5 10h14v10H5V10z" />
-              </svg>
-              <span>Заказы</span>
-            </button>
-
-            <button
-              onClick={() => router.push('/history')}
-              className="w-full flex items-center gap-3 px-6 py-3 text-left text-gray-600 hover:bg-gray-50"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
-              </svg>
-              <span>История</span>
-            </button>
-          </div>
+          <button
+            onClick={() => router.push('/history')}
+            className="w-full flex items-center gap-3 px-4 py-3 text-left text-gray-700 hover:bg-gray-50 rounded-xl transition-colors"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
+            </svg>
+            <span>История</span>
+          </button>
         </nav>
 
-        <div className="absolute bottom-8 left-6">
+        <div className="p-6 mt-auto border-t">
           <button
             onClick={() => router.push('/auth')}
-            className="flex items-center gap-2 text-gray-600 hover:text-gray-800"
+            className="w-full flex items-center gap-3 px-4 py-3 text-left text-gray-700 hover:bg-gray-50 rounded-xl transition-colors"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" />
@@ -318,97 +309,98 @@ export default function GroupsPage() {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 ml-64 flex">
-        {/* Groups List Panel */}
-        <div className="w-80 bg-white border-r flex flex-col">
-          <div className="p-6">
-            <div className="flex items-center justify-between mb-6">
-              <h1 className="text-2xl font-bold">Группы</h1>
-              <button
-                onClick={openCreateModal}
-                className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 flex items-center gap-2"
-              >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M12 5v14M5 12h14" />
-                </svg>
-                <span>Создать группу</span>
-              </button>
-            </div>
-            <div className="text-sm text-gray-500 mb-6">Вечерняя группа</div>
-
-            <div className="space-y-2">
-              {sortedGroups.map((group) => (
-                <button
-                  key={group.id}
-                  onClick={() => setSelectedGroup(group)}
-                  className={`w-full text-left px-4 py-3 rounded-lg transition-colors ${
-                    selectedGroup?.id === group.id
-                      ? 'bg-indigo-50 border-l-4 border-indigo-600 font-medium'
-                      : 'hover:bg-gray-50'
-                  }`}
-                >
-                  {group.name}
-                </button>
-              ))}
-            </div>
+      <main className="flex-1 overflow-auto">
+        {/* Top Header */}
+        <div className="bg-white border-b px-10 py-6">
+          <div className="flex items-center justify-between">
+            <h1 className="text-3xl font-bold text-gray-800">Группы</h1>
+            <button
+              onClick={openCreateModal}
+              className="bg-[#132440] text-white px-6 py-3 rounded-xl hover:bg-[#0d1a2e] transition-colors flex items-center gap-2 shadow-sm"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M12 5v14M5 12h14" />
+              </svg>
+              <span className="font-medium">Создать группу</span>
+            </button>
           </div>
         </div>
 
-        {/* Group Details Panel */}
-        <div className="flex-1 p-8 overflow-y-auto">
-          {selectedGroup ? (
-            <div className="max-w-4xl">
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-bold">{selectedGroup.name}</h2>
-                <div className="flex gap-2">
+        {/* Content Area */}
+        <div className="p-10">
+          <div className="flex gap-6">
+            {/* Left Column: Groups List */}
+            <div className="w-80 bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
+              <div className="space-y-3">
+                {sortedGroups.map((group) => (
                   <button
-                    onClick={openEditModal}
-                    className="p-2.5 hover:bg-gray-100 rounded-lg border border-gray-300"
-                    title="Редактировать"
+                    key={group.id}
+                    onClick={() => setSelectedGroup(group)}
+                    className={`w-full text-left px-4 py-3 rounded-xl transition-all ${
+                      selectedGroup?.id === group.id
+                        ? 'bg-[#132440]/10 text-[#132440] font-medium shadow-sm'
+                        : 'hover:bg-gray-50 text-gray-700'
+                    }`}
                   >
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
-                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
-                    </svg>
+                    {group.name}
                   </button>
-                  <button
-                    onClick={openDeleteModal}
-                    className="p-2.5 hover:bg-gray-100 rounded-lg border border-gray-300 text-red-600"
-                    title="Удалить"
-                  >
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
-                    </svg>
-                  </button>
-                </div>
+                ))}
               </div>
+            </div>
 
-              <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
+            {/* Right Column: Group Details */}
+            {selectedGroup ? (
+              <div className="flex-1 bg-white rounded-2xl border border-gray-200 shadow-sm p-8">
+                <div className="flex items-start justify-between mb-6">
+                  <h2 className="text-2xl font-bold text-gray-800">{selectedGroup.name}</h2>
+                  <div className="flex gap-3">
+                    <button
+                      onClick={openEditModal}
+                      className="p-2.5 border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors"
+                      title="Редактировать"
+                    >
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                      </svg>
+                    </button>
+                    <button
+                      onClick={openDeleteModal}
+                      className="p-2.5 border border-gray-300 rounded-xl hover:bg-red-50 text-red-600 transition-colors"
+                      title="Удалить"
+                    >
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
                 <div className="mb-6">
-                  <div className="text-sm text-gray-500 mb-1">Преподаватель:</div>
-                  <div className="font-medium">{selectedGroup.teacher.fullName}</div>
+                  <p className="text-sm text-gray-500 font-medium mb-1">Преподаватель:</p>
+                  <p className="text-gray-800 font-medium">{selectedGroup.teacher.fullName}</p>
                 </div>
 
                 <div>
-                  <div className="text-sm text-gray-500 mb-3">Участники группы:</div>
+                  <p className="text-sm text-gray-500 font-medium mb-3">Участники группы:</p>
                   <ol className="space-y-2">
                     {sortedParticipants.map((participant, index) => (
-                      <li key={participant.id} className="text-sm">
+                      <li key={participant.id} className="text-gray-700">
                         {index + 1}. {participant.fullName}
                       </li>
                     ))}
                   </ol>
                   {sortedParticipants.length === 0 && (
-                    <p className="text-gray-400 text-sm">Нет участников</p>
+                    <p className="text-gray-400 italic">Нет участников</p>
                   )}
                 </div>
               </div>
-            </div>
-          ) : (
-            <div className="flex items-center justify-center h-full text-gray-400">
-              Выберите группу для просмотра
-            </div>
-          )}
+            ) : (
+              <div className="flex-1 bg-white rounded-2xl border border-gray-200 shadow-sm flex items-center justify-center">
+                <p className="text-gray-400 text-lg">Выберите группу для просмотра</p>
+              </div>
+            )}
+          </div>
         </div>
       </main>
 
