@@ -1,24 +1,46 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { userApi, ApiError } from '@/lib/api'
+import { UserDTO } from '@/lib/types'
 
 export default function ProfilePage() {
   const router = useRouter()
-  const [email, setEmail] = useState('kosseivan@yandex.ru')
+  const [user, setUser] = useState<UserDTO | null>(null)
+  const [email, setEmail] = useState('')
   const [oldPassword, setOldPassword] = useState('')
   const [newPassword, setNewPassword] = useState('')
   const [repeatPassword, setRepeatPassword] = useState('')
   const [emailError, setEmailError] = useState('')
   const [passwordError, setPasswordError] = useState('')
   const [successMessage, setSuccessMessage] = useState('')
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    loadUserData()
+  }, [])
+
+  const loadUserData = async () => {
+    try {
+      const userData = await userApi.getCurrentUser()
+      setUser(userData)
+      setEmail(userData.email || '')
+    } catch (error) {
+      if (error instanceof ApiError) {
+        console.error('Failed to load user:', error.message)
+      }
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const validateEmail = (email: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     return emailRegex.test(email)
   }
 
-  const handleEmailSave = () => {
+  const handleEmailSave = async () => {
     setEmailError('')
     setSuccessMessage('')
 
@@ -27,10 +49,23 @@ export default function ProfilePage() {
       return
     }
 
-    setSuccessMessage('Email успешно сохранен')
+    if (!user?.id) return
+
+    try {
+      const updatedUser = await userApi.updateUser(user.id, {
+        ...user,
+        email,
+      })
+      setUser(updatedUser)
+      setSuccessMessage('Email успешно сохранен')
+    } catch (error) {
+      if (error instanceof ApiError) {
+        setEmailError(error.message)
+      }
+    }
   }
 
-  const handlePasswordChange = () => {
+  const handlePasswordChange = async () => {
     setPasswordError('')
     setSuccessMessage('')
 
@@ -39,21 +74,27 @@ export default function ProfilePage() {
       return
     }
 
-    // Validate old password (in real app, check against backend)
-    if (oldPassword !== 'correctPassword') {
-      setPasswordError('Старый пароль введен неверно, попробуйте снова')
-      return
-    }
-
     if (newPassword !== repeatPassword) {
       setPasswordError('Пароли не совпадают, попробуйте снова')
       return
     }
 
-    setSuccessMessage('Пароль успешно изменен')
-    setOldPassword('')
-    setNewPassword('')
-    setRepeatPassword('')
+    if (!user?.id) return
+
+    try {
+      await userApi.updateUser(user.id, {
+        ...user,
+        password: newPassword,
+      })
+      setSuccessMessage('Пароль успешно изменен')
+      setOldPassword('')
+      setNewPassword('')
+      setRepeatPassword('')
+    } catch (error) {
+      if (error instanceof ApiError) {
+        setPasswordError(error.message)
+      }
+    }
   }
 
   const handleLogout = () => {
@@ -150,6 +191,15 @@ export default function ProfilePage() {
 
         {/* Content Area */}
         <div className="p-10">
+          {loading ? (
+            <div className="flex justify-center items-center h-64">
+              <div className="text-gray-500">Загрузка...</div>
+            </div>
+          ) : !user ? (
+            <div className="flex justify-center items-center h-64">
+              <div className="text-red-500">Не удалось загрузить данные пользователя</div>
+            </div>
+          ) : (
           <div className="max-w-2xl">
             {/* Basic Information Section */}
             <div className="bg-white rounded-2xl p-8 mb-6 shadow-sm border border-gray-200">
@@ -160,7 +210,7 @@ export default function ProfilePage() {
                 <label className="block text-sm text-gray-600 mb-2">Логин</label>
                 <input
                   type="text"
-                  value="admin"
+                  value={user.login}
                   disabled
                   className="w-full px-4 py-2 rounded-lg border border-gray-300 bg-gray-100 text-gray-600 cursor-not-allowed"
                 />
@@ -244,6 +294,7 @@ export default function ProfilePage() {
             </button>
           </div>
         </div>
+          )}
       </div>
       </main>
     </div>
