@@ -8,7 +8,8 @@ import {
   ErrorResponse,
 } from './types';
 
-const API_BASE_URL = 'http://212.220.105.29:8079/api';
+// Use the proxy server running on localhost:3001
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
 
 class ApiError extends Error {
   constructor(

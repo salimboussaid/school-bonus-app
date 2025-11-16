@@ -14,6 +14,17 @@
 - **React 19** - UI библиотека
 - **TypeScript** - Типизация
 - **Tailwind CSS** - Стилизация
+- **Express.js** - Proxy сервер для решения CORS
+- **Backend API** - http://212.220.105.29:8079
+
+## Архитектура
+
+Приложение использует proxy-сервер для обхода CORS ограничений:
+
+```
+Frontend (Next.js)     Proxy Server (Express)     Backend API
+localhost:3000    -->  localhost:3001        -->  212.220.105.29:8079
+```
 
 ## Структура проекта
 
@@ -68,19 +79,86 @@
 npm install
 ```
 
-2. Запустите dev сервер:
+2. Создайте файл `.env.local` (опционально, уже настроен):
+```bash
+NEXT_PUBLIC_API_URL=http://localhost:3001/api
+```
+
+3. Запустите приложение с proxy сервером:
+
+**Вариант 1: Запуск всего сразу (рекомендуется)**
+```bash
+npm run dev:all
+```
+
+**Вариант 2: Запуск вручную в двух терминалах**
+
+Терминал 1 - Proxy сервер:
+```bash
+npm run proxy
+```
+
+Терминал 2 - Next.js:
 ```bash
 npm run dev
 ```
 
-3. Откройте браузер по адресу [http://localhost:3000](http://localhost:3000)
+4. Откройте браузер по адресу [http://localhost:3000](http://localhost:3000)
+
+### Проверка работы proxy сервера
+
+Откройте [http://localhost:3001/health](http://localhost:3001/health) - должен вернуться JSON с информацией о сервере.
 
 ## Команды
 
-- `npm run dev` - Запуск dev сервера
+- `npm run dev` - Запуск только Next.js dev сервера
+- `npm run proxy` - Запуск только proxy сервера
+- `npm run dev:all` - Запуск Next.js + Proxy одновременно (рекомендуется)
 - `npm run build` - Сборка для production
 - `npm start` - Запуск production сервера
 - `npm run lint` - Проверка кода
+
+## API Integration
+
+### Доступные endpoints
+
+Все запросы проходят через proxy на `http://localhost:3001/api`:
+
+**Users:**
+- `GET /api/users/me` - Получить текущего пользователя
+- `GET /api/users/{id}` - Получить пользователя по ID
+- `POST /api/users` - Создать пользователя
+- `PUT /api/users/{id}` - Обновить пользователя
+- `DELETE /api/users/{id}` - Удалить пользователя
+
+**Groups:**
+- `GET /api/groups` - Получить группы
+- `GET /api/groups/{id}` - Получить группу по ID
+- `POST /api/groups` - Создать группу
+- `PUT /api/groups/{id}` - Обновить группу
+- `DELETE /api/groups/{id}` - Удалить группу
+- `POST /api/groups/{groupId}/students/{studentId}` - Добавить студента
+- `DELETE /api/groups/{groupId}/students/{studentId}` - Удалить студента
+
+**Presents (Подарки):**
+- `GET /api/presents` - Получить подарки
+- `GET /api/presents/{id}` - Получить подарок по ID
+- `GET /api/presents/search?query=xxx` - Поиск подарков
+- `POST /api/presents` - Создать подарок
+- `PUT /api/presents/{id}` - Обновить подарок
+- `DELETE /api/presents/{id}` - Удалить подарок
+- `POST /api/presents/{id}/photos` - Добавить фото
+- `DELETE /api/presents/{presentId}/photos/{photoId}` - Удалить фото
+
+### Решение проблемы CORS
+
+Proxy сервер (`server.js`) решает проблему CORS, перенаправляя все запросы к backend API и добавляя необходимые CORS заголовки.
+
+**Как это работает:**
+1. Frontend делает запрос на `http://localhost:3001/api/...`
+2. Proxy сервер получает запрос и пересылает его на `http://212.220.105.29:8079/api/...`
+3. Backend отвечает proxy серверу
+4. Proxy сервер добавляет CORS заголовки и возвращает ответ frontend
 
 ## Требования к валидации
 
